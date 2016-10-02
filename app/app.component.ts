@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 
 
 import { UserService } from './app.service';
+import { UsersListComponent} from './users/users-list.component';
+
 
 @Component({
   selector: 'equinooxe-app',
   template: `
-    <h1> {{appName}} adapted from Angular App starter!</h1>
+    <h1> {{appName}}  </h1>
     <br>
-    <h4>Ping server: get a user </h4>
-          <h5>id : {{user?.id}} </h5>
-          <h5>Username  : {{user?.username}} </h5>
+    <users-list></users-list> 
     `,
   providers: [UserService]
 })
