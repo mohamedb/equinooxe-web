@@ -5,20 +5,40 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UsersListComponent } from './users/users-list.component';
+import { LoginComponent } from './auth/login.component';
+
+import { RouterModule } from '@angular/router';
+
+
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+       {
+        path: '',
+        component: LoginComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'users-list',
+        component: UsersListComponent
+      }
+    ])
   ],
   providers: [
 
   ],
   declarations: [
     AppComponent,
-    UsersListComponent
-    ],
+    UsersListComponent,
+    LoginComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,9 +8,9 @@ import { UsersListComponent} from './users/users-list.component';
 @Component({
   selector: 'equinooxe-app',
   template: `
-    <h1> {{appName}}  </h1>
-    <br>
-    <users-list></users-list> 
+    <h6> {{appName}}  </h6>
+    <a routerLink="/login">Login</a>
+    <router-outlet></router-outlet>
     `,
   providers: [UserService]
 })
