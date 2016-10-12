@@ -13,9 +13,17 @@ var app_service_1 = require('./../app.service');
 var LoginComponent = (function () {
     function LoginComponent(userService) {
         this.userService = userService;
-        this.userService.getUsers().then(function (resp) {
-        }, function (err) { console.log(err); });
+        this.error = "";
+        this.userService.getUsers().then(function (resp) { }, function (err) { console.log(err); });
     }
+    LoginComponent.prototype.submit = function () {
+        if (this.password && this.username) {
+            this.error = "";
+        }
+        else {
+            this.error = "username && password are required!";
+        }
+    };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'auth-login',

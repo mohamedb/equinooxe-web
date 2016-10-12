@@ -1,20 +1,31 @@
 <div class="row">
 	<div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+		 <h1 *ngIf="error">{{error}}</h1>
 		<form>
 			<h1>Login Form</h1>
 			<div>
-				<input type="text" class="form-control" placeholder="Username" required="" />
+				<input [(ngModel)]="username"
+				       type="text" 
+				       class="form-control" 
+					   placeholder="Username" 
+					   required="" [ngModelOptions]="{standalone: true}" />
 			</div>
 			<div>
-				<input type="password" class="form-control" placeholder="Password" required="" />
+				<input [(ngModel)]="password"
+				      type="password" 
+					  class="form-control" 
+					  placeholder="Password" 
+					  required="" [ngModelOptions]="{standalone: true}" />
 			</div>
 			<div> 
 				 <br>
 				  <a class="btn btn-default submit" 
-				     routerLink="/users-list">Log in
+				     (click)="submit()" >Log in
 				  </a>
 				  <br>
-				<a class="reset_pass" href="#">Lost your password?</a>
+				  <a class="btn btn-primary"  
+				     routerLink="/users-list">User list!
+				  </a>
 			</div>
 
 			<div class="clearfix"></div>
