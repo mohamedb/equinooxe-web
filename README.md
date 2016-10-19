@@ -1,2 +1,1 @@
-# equinooxe-web
-Playing with tech: testing ng2
+@see: (http://akveo.com/).
