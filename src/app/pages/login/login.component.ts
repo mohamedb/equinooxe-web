@@ -1,11 +1,13 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
+import {LoginService} from './login.service';
 
 @Component({
   selector: 'login',
   encapsulation: ViewEncapsulation.None,
   styles: [require('./login.scss')],
   template: require('./login.html'),
+  providers: [LoginService]
 })
 export class Login {
 
@@ -14,10 +16,10 @@ export class Login {
   public password:AbstractControl;
   public submitted:boolean = false;
 
-  constructor(fb:FormBuilder) {
+  constructor(fb:FormBuilder, private loginService:LoginService) {
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+      'email': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
     });
 
     this.email = this.form.controls['email'];
@@ -27,8 +29,12 @@ export class Login {
   public onSubmit(values:Object):void {
     this.submitted = true;
     if (this.form.valid) {
-      // your code goes here
-      // console.log(values);
+       console.log('this.email.value',this.email.value);
+       
+       this.loginService.login(this.email.value,this.password.value).then(
+          response => alert('success :) '),
+          err=> alert(err)
+       )
     }
   }
 }
