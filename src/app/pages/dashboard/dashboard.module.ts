@@ -7,6 +7,7 @@ import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
 
 import { PopularApp } from './popularApp';
+import { UsersList } from './users-list';
 import { PieChart } from './pieChart';
 import { TrafficChart } from './trafficChart';
 import { UsersMap } from './usersMap';
@@ -38,7 +39,8 @@ import { UsersMapService } from './usersMap/usersMap.service';
     Feed,
     Todo,
     Calendar,
-    Dashboard
+    Dashboard,
+    UsersList
   ],
   providers: [
     CalendarService,

@@ -1,0 +1,21 @@
+
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>#</th>
+			<th>Email</th>
+			<th>Roles</th>
+		</tr>
+		<tr *ngFor="let user of users">
+			<td>{{user.id}}</td>
+			<td>
+				<a class="email-link" href="mailto:{{user.email}}"> {{user.email}} </a>
+			</td>
+			<td>
+			  	<span *ngFor="let role of user.roles">
+             {{role}}
+         </span>
+			</td>
+		</tr>
+	</table>
+</div>

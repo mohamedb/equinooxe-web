@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class DashboardService extends BaseService {
+ 
   constructor(public http: Http, public router: Router) {
     super(http, router);
   }
