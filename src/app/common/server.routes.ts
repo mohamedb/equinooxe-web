@@ -3,8 +3,9 @@ export class ServerRoutes {
     static JSON_HEADER = { 'Content-Type': 'application/json' };
 
     static AUTH_LOGIN = ServerRoutes.BASE_URL+"/auth/login";
+    static AUTH_LOGOUT = ServerRoutes.BASE_URL+"/auth/logout";
 
-    static USER_ALL_USERS = ServerRoutes.BASE_URL + 'secure/user/all';  // URL to web api
+    static USER_ALL_USERS = ServerRoutes.BASE_URL + '/secure/user/all';  // URL to web api
     
     
 }

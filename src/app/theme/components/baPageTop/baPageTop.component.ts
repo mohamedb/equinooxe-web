@@ -1,27 +1,33 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import {GlobalState} from '../../../global.state';
+import { Component, ViewEncapsulation } from '@angular/core';
+import {Router} from '@angular/router';
+import { GlobalState } from '../../../global.state';
+import { LoginService } from './../../../pages/login/login.service';
 
 @Component({
   selector: 'ba-page-top',
   styles: [require('./baPageTop.scss')],
   template: require('./baPageTop.html'),
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [LoginService]
 })
 export class BaPageTop {
 
-  public isScrolled:boolean = false;
-  public isMenuCollapsed:boolean = false;
+  public isScrolled: boolean = false;
+  public isMenuCollapsed: boolean = false;
 
-  constructor(private _state:GlobalState) {
-    this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
+  constructor(private state: GlobalState, private loginService: LoginService) {
+    this.state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
   }
 
+  public logout(): void {
+    this.loginService.logout();
+  }
+
   public toggleMenu() {
     this.isMenuCollapsed = !this.isMenuCollapsed;
-    this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
+    this.state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
   }
 
   public scrolledChanged(isScrolled) {
