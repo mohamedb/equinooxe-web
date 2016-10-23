@@ -1,0 +1,11 @@
+New task to build targeting Electron:
+
+    "build:electron": Alias for build:electron.full
+    "prebuild:electron.full": "npm run clean:electron",
+    "build:electron.full": "npm run build:electron.renderer && npm run build:electron.main",
+    "postbuild:electron.full": "npm run electron:start",
+
+    "build:electron.renderer": Webpack aplication with production properties and targeting electron-renderer
+    "build:electron.main": Webpack main Electron with production properties and targeting electron
+
+    "electron:start": "electron build"
