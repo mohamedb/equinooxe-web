@@ -5,7 +5,8 @@ export class ServerRoutes {
     static AUTH_LOGIN = ServerRoutes.BASE_URL+"/auth/login";
     static AUTH_LOGOUT = ServerRoutes.BASE_URL+"/auth/logout";
 
-    static USER_ALL_USERS = ServerRoutes.BASE_URL + '/secure/user/all';  // URL to web api
+    static USER_REGISTER =  ServerRoutes.BASE_URL + '/secure/user/add';   
+    static USER_ALL_USERS = ServerRoutes.BASE_URL + '/secure/user/all';   
     
     
 }
