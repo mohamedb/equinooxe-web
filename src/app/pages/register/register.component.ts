@@ -18,6 +18,22 @@ export class Register {
   public password: AbstractControl;
   public repeatPassword: AbstractControl;
   public passwords: FormGroup;
+  public errorMessage: string = "";
+  public items:Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
+    'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
+    'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin', 'Düsseldorf',
+    'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg', 'Hamburg', 'Hannover',
+    'Helsinki', 'Leeds', 'Leipzig', 'Lisbon', 'Łódź', 'London', 'Kraków', 'Madrid',
+    'Málaga', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Naples', 'Palermo',
+    'Paris', 'Poznań', 'Prague', 'Riga', 'Rome', 'Rotterdam', 'Seville', 'Sheffield',
+    'Sofia', 'Stockholm', 'Stuttgart', 'The Hague', 'Turin', 'Valencia', 'Vienna',
+    'Vilnius', 'Warsaw', 'Wrocław', 'Zagreb', 'Zaragoza'];
+    public itemsToString(value:Array<any> = []):string {
+    return value
+      .map((item:any) => {
+        return item.text;
+      }).join(',');
+  }
 
   public registrationVm = new UserRegistrationViewModel();
 
@@ -31,7 +47,9 @@ export class Register {
       'passwords': fb.group({
         'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-      }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') })
+      }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') }
+      ),
+       
     });
     this.name = this.form.controls['name'];
     this.email = this.form.controls['email'];
@@ -48,13 +66,14 @@ export class Register {
       this.registrationVm.password = this.password.value;
       this.registrationVm.registrationType = "BASIC";
       this.registrationVm.roleIds = [1];
-      console.log('obj ',this.registrationVm);
+      console.log('obj ', this.registrationVm);
       this.registerService.register(this.registrationVm).then(
         resp => {
-          console.log("Comp success, ",resp);
+          console.log("Comp success, ", resp);
         },
-        err=>{
-          console.warn("comp err, ",err);
+        err => {
+          this.errorMessage = err.json().message;
+          console.warn("comp err, ", err);
         }
       )
     }

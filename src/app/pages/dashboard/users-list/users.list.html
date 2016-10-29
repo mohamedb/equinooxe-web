@@ -1,4 +1,3 @@
-
 <div class="table-responsive">
 	<table class="table">
 		<tr>
@@ -12,9 +11,9 @@
 				<a class="email-link" href="mailto:{{user.email}}"> {{user.email}} </a>
 			</td>
 			<td>
-			  	<span *ngFor="let role of user.roles">
-             {{role}}
-         </span>
+				<span *ngFor="let userRole of user.userRoles">
+                  > {{userRole.role.name}}  
+                </span>
 			</td>
 		</tr>
 	</table>

@@ -1,1 +1,14 @@
 @import '../../theme/sass/auth';
+.auth-block {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 32px;
+  color: black;
+}
+
+.auth-block .control-label {
+  padding-top: 11px;
+  color: darkblue;
+}
