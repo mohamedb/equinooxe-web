@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator, EqualPasswordsValidator } from '../../theme/validators';
 import { UserRegistrationViewModel } from './registration.viewmodel';
@@ -10,52 +10,51 @@ import { RegisterService } from './register.service';
   template: require('./register.html'),
   providers: [RegisterService]
 })
-export class Register {
+export class Register implements OnInit {
 
   public form: FormGroup;
   public name: AbstractControl;
   public email: AbstractControl;
   public password: AbstractControl;
   public repeatPassword: AbstractControl;
+  public roles: AbstractControl;
   public passwords: FormGroup;
   public errorMessage: string = "";
-  public items:Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
-    'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
-    'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin', 'Düsseldorf',
-    'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg', 'Hamburg', 'Hannover',
-    'Helsinki', 'Leeds', 'Leipzig', 'Lisbon', 'Łódź', 'London', 'Kraków', 'Madrid',
-    'Málaga', 'Manchester', 'Marseille', 'Milan', 'Munich', 'Naples', 'Palermo',
-    'Paris', 'Poznań', 'Prague', 'Riga', 'Rome', 'Rotterdam', 'Seville', 'Sheffield',
-    'Sofia', 'Stockholm', 'Stuttgart', 'The Hague', 'Turin', 'Valencia', 'Vienna',
-    'Vilnius', 'Warsaw', 'Wrocław', 'Zagreb', 'Zaragoza'];
-    public itemsToString(value:Array<any> = []):string {
-    return value
-      .map((item:any) => {
-        return item.text;
-      }).join(',');
-  }
+  public successMessage: string = "";
+
 
   public registrationVm = new UserRegistrationViewModel();
 
   public submitted: boolean = false;
 
-  constructor(fb: FormBuilder, private registerService: RegisterService) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {
+       this.initForm();
 
-    this.form = fb.group({
-      'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
-      'passwords': fb.group({
-        'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-      }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') }
+  }
+
+  public ngOnInit(): void {
+    this.registerService.get().then(
+      resp => { this.registrationVm = resp; }
+    )
+  }
+
+  private initForm(): void {
+    this.form = this.fb.group({
+      'name': ['medmed' , Validators.compose([Validators.required, Validators.minLength(1)])],
+      'email': ['med@med.com', Validators.compose([Validators.required, EmailValidator.validate])],
+      'passwords': this.fb.group({
+        'password': ['medmed', Validators.compose([Validators.required, Validators.minLength(4)])],
+        'repeatPassword': ['medmed', Validators.compose([Validators.required, Validators.minLength(4)])]
+        }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') }
       ),
-       
+     'roles': [] ,
     });
     this.name = this.form.controls['name'];
     this.email = this.form.controls['email'];
     this.passwords = <FormGroup>this.form.controls['passwords'];
     this.password = this.passwords.controls['password'];
     this.repeatPassword = this.passwords.controls['repeatPassword'];
+    this.roles = this.form.controls['roles'];
   }
 
   public onSubmit(values: Object): void {
@@ -65,11 +64,14 @@ export class Register {
       this.registrationVm.username = this.name.value;
       this.registrationVm.password = this.password.value;
       this.registrationVm.registrationType = "BASIC";
-      this.registrationVm.roleIds = [1];
+      this.registrationVm.roleIds = this.roles.value;
       console.log('obj ', this.registrationVm);
-      this.registerService.register(this.registrationVm).then(
+      this.errorMessage = "";
+      this.registerService.save(this.registrationVm).then(
         resp => {
           console.log("Comp success, ", resp);
+          this.successMessage = "Object savec successfully, new id:" + resp;
+
         },
         err => {
           this.errorMessage = err.json().message;

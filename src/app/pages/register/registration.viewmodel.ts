@@ -11,5 +11,5 @@ export class UserRegistrationViewModel {
     public password: string;
     public registrationType: string = "BASIC";
     public roleIds: Array<number> = [];
- 
+    public roles:Array<any>=[];
 }
