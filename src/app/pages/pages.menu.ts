@@ -15,6 +15,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'roles',
+        data: {
+          menu: {
+            title: 'Roles',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 10
+          }
+        }
+      },
+      {
         path: 'editors',
         data: {
           menu: {

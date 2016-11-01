@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'in/register',
         loadChildren: () => System.import('./register/register.module')
+      },
+      {
+        path: 'roles',
+        loadChildren: () => System.import('./roles/roles.module')
       }
     ]
   }

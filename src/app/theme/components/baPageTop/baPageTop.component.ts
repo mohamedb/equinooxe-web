@@ -14,7 +14,7 @@ export class BaPageTop {
 
   public isScrolled: boolean = false;
   public isMenuCollapsed: boolean = false;
-
+  public baProfilePicture:string  = 'assets/img/app/profile/greenCat.jpg';
   constructor(private state: GlobalState, private loginService: LoginService) {
     this.state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;

@@ -36,9 +36,7 @@
           <option *ngFor="let role of registrationVm.roles" [value]="role.id">{{role.name}}</option>
         </select>
       </div>
-
-    
-
+ 
       <div class="form-group row">
         <div class="col-sm-offset-2 col-sm-10">
           <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Save</button>
