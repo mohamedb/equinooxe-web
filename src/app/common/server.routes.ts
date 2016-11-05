@@ -1,9 +1,11 @@
 export class ServerRoutes {
     static BASE_URL = "http://localhost:8080/equinooxe/ws";
+    static SECURE_BASE_URL = ServerRoutes.BASE_URL + "/secure";
+
     static JSON_HEADER = { 'Content-Type': 'application/json' };
 
-    static AUTH_LOGIN = ServerRoutes.BASE_URL+"/auth/login";
-    static AUTH_LOGOUT = ServerRoutes.BASE_URL+"/auth/logout";
+    static AUTH_LOGIN = ServerRoutes.BASE_URL + "/auth/login";
+    static AUTH_LOGOUT = ServerRoutes.BASE_URL + "/auth/logout";
 
     /**
      * for both operation get/post
@@ -12,7 +14,10 @@ export class ServerRoutes {
      * 
      * @memberOf ServerRoutes
      */
-    static REGISTER_USER =  ServerRoutes.BASE_URL + '/secure/register/';  
+    static REGISTER_USER = ServerRoutes.SECURE_BASE_URL + '/register/';
+
+    static ROLE_PERMISSION = ServerRoutes.SECURE_BASE_URL + '/rolepermission/';
+
     /**
      * get all user
      * 
@@ -20,7 +25,7 @@ export class ServerRoutes {
      * 
      * @memberOf ServerRoutes
      */
-    static USER_ALL_USERS = ServerRoutes.BASE_URL + '/secure/user/all';   
-    
-    
+    static USER_ALL_USERS = ServerRoutes.BASE_URL + '/secure/user/all';
+
+
 }

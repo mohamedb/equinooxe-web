@@ -1,21 +1,47 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+
+import { RolesService } from './roles.service';
+import { RolePermissionViewModel } from './role-permission.viewmodel';
+import { RoleModel } from './role.model';
+import { PermissionModel } from './permission.model';
 
 @Component({
   selector: 'roles-form',
   template: require('./roles.form.html'),
+  providers: [RolesService]
 })
 export class RolesFormComponent {
-  public roleElements:Array<any>=[];
-   public form: FormGroup;
-  constructor() {
-  }
-  public init():void {
+  public rolePermissionViewModel: RolePermissionViewModel = new RolePermissionViewModel();
 
+  constructor(private rolesService: RolesService) {
+    this.init();
   }
-  public newElement():void {
-    this.roleElements.push({name:"new_role"});
-    return ;
+  public init(): void {
+    this.rolesService.get().then(
+      response => {
+        this.rolePermissionViewModel = response;
+      }
+    )
+  }
+  public addRole(): void {
+
+    let role = new RoleModel();
+    role.name = "new_role_" + role.id;
+    this.rolePermissionViewModel.newRoles.push(role);
+
+    return;
+  }
+
+  public removeRole(id: number) {
+    _.remove(this.rolePermissionViewModel.newRoles, e => {
+      return e.id == id;
+    })
+  }
+  public save(): void {
+    /**
+     * call service ...
+     */
   }
 }
