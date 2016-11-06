@@ -19,7 +19,8 @@ export class RolesService extends BaseService {
   }
 
   public save(rolePermissionViewModel: RolePermissionViewModel): Promise<any[]> {
-
+    rolePermissionViewModel.permissionEntities = [];
+    rolePermissionViewModel.roleEntities = [];
     let headers = this.getHeadersAuth();
     let options = new RequestOptions({ headers: headers });
 

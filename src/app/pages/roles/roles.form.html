@@ -1,27 +1,38 @@
 <h1>Roles and permission</h1>
 <div class="row">
   <div class="col-md-6">
-    <form>
-      <h6>Roles </h6>
-      <div *ngFor=" let role of rolePermissionViewModel.newRoles" class="form-group">
-        <label for="input04">Role</label>
-        <input type="text" class="form-control" [(ngModel)]="role.name" [ngModelOptions]="{standalone: true}" placeholder="Role name">
-        <span class="btn btn-xs" (click)=removeRole(role.id) > X </span>
-      </div>
-      <b class="btn btn-primary" (click)="addRole()">Add </b>
-    </form>
+    <b class="btn btn-primary" (click)="addRole()">Add new role</b>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Role name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let role of rolePermissionViewModel.newRoles">
+          <td> <input type="text" class="form-control" [(ngModel)]="role.name" [ngModelOptions]="{standalone: true}" placeholder="Role name"></td>
+          <td> <span class="btn btn-xs" (click)=removeRole(role.id)> X </span> </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="col-md-6">
-    <form>
-      <h6>Permissions </h6>
-      <div *ngFor=" let permission of rolePermissionViewModel.newPermissions" class="form-group">
-        <label for="input04">Role</label>
-        <input type="text" class="form-control" [(ngModel)]="permission.name" [ngModelOptions]="{standalone: true}" placeholder="Role name">
-        <span class="help-block sub-little-text">New permission .</span>
-      </div>
-      <b class="btn btn-primary" (click)="addPermission()">Add </b>
-    </form>
+    <b class="btn btn-primary" (click)="addPermission()">Add new permission </b>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Permission name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let permission of rolePermissionViewModel.newPermissions">
+          <td> <input type="text" class="form-control" [(ngModel)]="permission.name" [ngModelOptions]="{standalone: true}" placeholder="Permission name"></td>
+          <td><span class="btn btn-xs" (click)=removePermission(permission.id)> X </span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-<button (click)="save()" type="button" class="btn btn-primary">Save</button> 
-{{rolePermissionViewModel|json}}
+<button (click)="save()" type="button" class="btn btn-primary">Save changes</button>

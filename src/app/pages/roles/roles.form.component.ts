@@ -26,11 +26,15 @@ export class RolesFormComponent {
     )
   }
   public addRole(): void {
-
     let role = new RoleModel();
     role.name = "new_role_" + role.id;
     this.rolePermissionViewModel.newRoles.push(role);
-
+    return;
+  }
+  public addPermission(): void {
+    let permission = new PermissionModel();
+    permission.name = "new_permission_" + permission.id;
+    this.rolePermissionViewModel.newPermissions.push(permission);
     return;
   }
 
@@ -39,9 +43,14 @@ export class RolesFormComponent {
       return e.id == id;
     })
   }
+  public removePermission(id: number) {
+    _.remove(this.rolePermissionViewModel.newPermissions, e => {
+      return e.id == id;
+    })
+  }
   public save(): void {
-    /**
-     * call service ...
-     */
+    this.rolesService.save(this.rolePermissionViewModel).then(
+      res => console.log(res)
+    )
   }
 }
