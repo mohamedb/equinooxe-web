@@ -1,38 +1,79 @@
-<h1>Roles and permission</h1>
 <div class="row">
   <div class="col-md-6">
-    <b class="btn btn-primary" (click)="addRole()">Add new role</b>
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Role name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor=" let role of rolePermissionViewModel.newRoles">
-          <td> <input type="text" class="form-control" [(ngModel)]="role.name" [ngModelOptions]="{standalone: true}" placeholder="Role name"></td>
-          <td> <span class="btn btn-xs" (click)=removeRole(role.id)> X </span> </td>
-        </tr>
-      </tbody>
-    </table>
+    <ba-card title="Hover Rows" baCardClass="with-scroll table-panel" title="Existing Roles">
+      <div class="horizontal-scroll">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Last edit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor=" let role of rolePermissionViewModel.roleEntities">
+              <td> {{role.name}} </td>
+              <td> {{role.updateAt}} </td>
+              <td> <button class="btn btn-xs" (click)=removeRoleEntity(role.id)> X </button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="btn btn-primary" (click)="addRole()">Add new role</h4>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Role name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let role of rolePermissionViewModel.newRoles">
+            <td> <input type="text" class="form-control" [(ngModel)]="role.name" [ngModelOptions]="{standalone: true}" placeholder="Role name"></td>
+            <td> <span class="btn btn-xs" (click)=removeRole(role.id)> X </span> </td>
+          </tr>
+        </tbody>
+      </table>
+    </ba-card>
   </div>
   <div class="col-md-6">
-    <b class="btn btn-primary" (click)="addPermission()">Add new permission </b>
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Permission name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor=" let permission of rolePermissionViewModel.newPermissions">
-          <td> <input type="text" class="form-control" [(ngModel)]="permission.name" [ngModelOptions]="{standalone: true}" placeholder="Permission name"></td>
-          <td><span class="btn btn-xs" (click)=removePermission(permission.id)> X </span></td>
-        </tr>
-      </tbody>
-    </table>
+    <ba-card title="Hover Rows" baCardClass="with-scroll table-panel" title="Existing Permissions">
+      <div class="horizontal-scroll">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Permission</th>
+              <th>Last edit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor=" let entity of rolePermissionViewModel.permissionEntities">
+              <td> {{entity.name}} </td>
+              <td> {{entity.updateAt}} </td>
+              <td> <button class="btn btn-xs" (click)=removePermissionEntity(entity.id)> X </button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="btn btn-primary" (click)="addPermission()">Add new permission </h4>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Permission name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let permission of rolePermissionViewModel.newPermissions">
+            <td> <input type="text" class="form-control" [(ngModel)]="permission.name" [ngModelOptions]="{standalone: true}" placeholder="Permission name"></td>
+            <td><span class="btn btn-xs" (click)=removePermission(permission.id)> X </span></td>
+          </tr>
+        </tbody>
+      </table>
+    </ba-card>
   </div>
 </div>
-<button (click)="save()" type="button" class="btn btn-primary">Save changes</button>
+<div class="row">
+  <button (click)="save()" type="button" class="btn btn-primary">Save changes</button>
+</div>

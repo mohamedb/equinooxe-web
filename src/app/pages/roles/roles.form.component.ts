@@ -27,25 +27,25 @@ export class RolesFormComponent {
   }
   public addRole(): void {
     let role = new RoleModel();
-    role.name = "new_role_" + role.id;
+    role.name = "new_role_" + role.tempId;
     this.rolePermissionViewModel.newRoles.push(role);
     return;
   }
   public addPermission(): void {
     let permission = new PermissionModel();
-    permission.name = "new_permission_" + permission.id;
+    permission.name = "new_permission_" + permission.tempId;
     this.rolePermissionViewModel.newPermissions.push(permission);
     return;
   }
 
   public removeRole(id: number) {
     _.remove(this.rolePermissionViewModel.newRoles, e => {
-      return e.id == id;
+      return e.tempId == id;
     })
   }
   public removePermission(id: number) {
     _.remove(this.rolePermissionViewModel.newPermissions, e => {
-      return e.id == id;
+      return e.tempId == id;
     })
   }
   public save(): void {

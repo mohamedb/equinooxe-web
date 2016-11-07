@@ -9,9 +9,15 @@
  * @class BaseModel
  */
 export abstract class BaseModel {
-    public id: number;
+    /**
+     * Temporary id for dom manipulation
+     * 
+     * @type {number}
+     * @memberOf BaseModel
+     */
+    public tempId: number;
 
     public constructor() {
-        this.id = Math.floor(Math.random() * 999) + 1;
+        this.tempId = Math.floor(Math.random() * 999) + 1;
     }
 }
