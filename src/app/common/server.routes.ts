@@ -17,6 +17,7 @@ export class ServerRoutes {
     static REGISTER_USER = ServerRoutes.SECURE_BASE_URL + '/register/';
 
     static ROLE_PERMISSION = ServerRoutes.SECURE_BASE_URL + '/rolepermission/';
+    static ROLE_PERMISSION_DELETE = ServerRoutes.SECURE_BASE_URL + '/rolepermission/delete';
 
     /**
      * get all user

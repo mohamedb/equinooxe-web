@@ -6,6 +6,7 @@ import { RolesService } from './roles.service';
 import { RolePermissionViewModel } from './role-permission.viewmodel';
 import { RoleModel } from './role.model';
 import { PermissionModel } from './permission.model';
+import { RolePermissionDeleteViewModel } from './role-permission-delete.viewmodel';
 
 @Component({
   selector: 'roles-form',
@@ -14,7 +15,7 @@ import { PermissionModel } from './permission.model';
 })
 export class RolesFormComponent {
   public rolePermissionViewModel: RolePermissionViewModel = new RolePermissionViewModel();
-
+  public rolePermissionDeleteViewModel: RolePermissionDeleteViewModel = new RolePermissionDeleteViewModel();
   constructor(private rolesService: RolesService) {
     this.init();
   }
@@ -48,6 +49,24 @@ export class RolesFormComponent {
       return e.tempId == id;
     })
   }
+
+  public removeRoleEntity(id: number) {
+    this.rolePermissionDeleteViewModel.roles.ids.push(id);
+  }
+
+  public removePermissionEntity(id: number) {
+    this.rolePermissionDeleteViewModel.permissions.ids.push(id);
+  }
+
+  public saveDelete(): void {
+    this.rolesService.delete(this.rolePermissionDeleteViewModel).then(
+      res => {
+        console.log(res);
+        this.init();
+      }
+    )
+  }
+
   public save(): void {
     this.rolesService.save(this.rolePermissionViewModel).then(
       res => console.log(res)

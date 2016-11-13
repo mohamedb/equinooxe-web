@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 
 import { RolePermissionViewModel } from './role-permission.viewmodel';
+import {RolePermissionDeleteViewModel } from './role-permission-delete.viewmodel';
 
 @Injectable()
 export class RolesService extends BaseService {
@@ -42,6 +43,17 @@ export class RolesService extends BaseService {
   public get(): Promise<RolePermissionViewModel> {
     let options = new RequestOptions({ headers: this.getHeadersAuth() });
     return this.http.get(ServerRoutes.ROLE_PERMISSION, options).toPromise().then(
+      response => { return response.json() },
+      err => {
+        console.warn(err.json);
+      }
+    ).catch(this.handleError);
+  }
+
+  public delete(deleteVMl: RolePermissionDeleteViewModel ): Promise<Array<any>> {
+
+    let options = new RequestOptions({ headers: this.getHeadersAuth() });
+    return this.http.post(ServerRoutes.ROLE_PERMISSION_DELETE, deleteVMl, options).toPromise().then(
       response => { return response.json() },
       err => {
         console.warn(err.json);

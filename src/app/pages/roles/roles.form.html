@@ -14,7 +14,7 @@
             <tr *ngFor=" let role of rolePermissionViewModel.roleEntities">
               <td> {{role.name}} </td>
               <td> {{role.updateAt}} </td>
-              <td> <button class="btn btn-xs" (click)=removeRoleEntity(role.id)> X </button> </td>
+              <td> <input type="checkbox" (click)=removeRoleEntity(role.id) /> </td>
             </tr>
           </tbody>
         </table>
@@ -51,7 +51,7 @@
             <tr *ngFor=" let entity of rolePermissionViewModel.permissionEntities">
               <td> {{entity.name}} </td>
               <td> {{entity.updateAt}} </td>
-              <td> <button class="btn btn-xs" (click)=removePermissionEntity(entity.id)> X </button> </td>
+              <td> <input type="checkbox" (click)=removePermissionEntity(entity.id) />   </td>
             </tr>
           </tbody>
         </table>
@@ -75,5 +75,7 @@
   </div>
 </div>
 <div class="row">
-  <button (click)="save()" type="button" class="btn btn-primary">Save changes</button>
+  <button (click)="save()" type="button" class="btn btn-primary">Save new</button>
+  <button (click)="saveDelete()" type="button" class="btn btn-danger">Delete</button>
 </div>
+{{rolePermissionDeleteViewModel|json}}
