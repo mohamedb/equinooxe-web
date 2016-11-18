@@ -44,11 +44,13 @@
         border-radius: 13px;
         text-shadow: none;
         line-height: 11px;
-        background-color: $danger;
+        color: $danger;
+        background-color: #e4e0bb;
         position: absolute;
         top: -5px;
         right: -14px;
         font-size: 11px;
+        font-weight: 700;
       }
       .notification-ring {
         border: 1px solid $danger;
