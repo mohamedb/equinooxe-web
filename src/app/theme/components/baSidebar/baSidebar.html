@@ -1,4 +1,6 @@
-<aside class="al-sidebar" (mouseleave)="hoverElemTop=outOfArea" sidebarResize>
+<aside class="al-sidebar" 
+      (mouseleave)="hoverElemTop=outOfArea" sidebarResize
+      (mouseenter) ="onMouseEnter()">
   <ba-menu [menuRoutes]="routes"
            [menuHeight]="menuHeight"
            [sidebarCollapsed]="isMenuCollapsed"
