@@ -1,5 +1,5 @@
-$card-title-height: 44px;
-$card-header-font-size: 16px;
+$card-title-height: 35px;
+$card-header-font-size: 14px;
 
 .card.card-blur {
   $blurredBgUrl: $images-root + 'blur-bg-blurred.jpg';
@@ -53,7 +53,7 @@ $card-header-font-size: 16px;
 
 .card {
   > .card-body {
-    padding: 15px 22px;
+    padding: 3px 5px;
     height: 100%;
   }
   > .card-header {

@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <ba-card title="Hover Rows" baCardClass="with-scroll table-panel" title="Existing Roles">
       <div class="horizontal-scroll">
-        <table class="table table-bordered">
+        <table class="table table table-striped">
           <thead>
             <tr>
               <th>Role</th>
@@ -19,8 +19,8 @@
           </tbody>
         </table>
       </div>
-      <h4 class="btn btn-primary" (click)="addRole()">Add new role</h4>
-      <table class="table table-bordered table-striped table-hover">
+      <h4 class="btn btn-blue" (click)="addRole()">Add new role</h4>
+      <table class="table table-striped ">
         <thead>
           <tr>
             <th>Role name</th>
@@ -39,7 +39,7 @@
   <div class="col-md-6">
     <ba-card title="Hover Rows" baCardClass="with-scroll table-panel" title="Existing Permissions">
       <div class="horizontal-scroll">
-        <table class="table table-bordered">
+        <table class="table table table-striped">
           <thead>
             <tr>
               <th>Permission</th>
@@ -56,8 +56,8 @@
           </tbody>
         </table>
       </div>
-      <h4 class="btn btn-primary" (click)="addPermission()">Add new permission </h4>
-      <table class="table table-bordered table-striped table-hover">
+      <h4 class="btn btn-blue" (click)="addPermission()">Add new permission </h4>
+      <table class="table table table-striped table-striped table-hover">
         <thead>
           <tr>
             <th>Permission name</th>
@@ -75,7 +75,8 @@
   </div>
 </div>
 <div class="row">
-  <button (click)="save()" type="button" class="btn btn-primary">Save new</button>
-  <button (click)="saveDelete()" type="button" class="btn btn-danger">Delete</button>
+  <button (click)="save()" type="button" class="btn btn-blue">Save new</button>
+  <button (click)="save()" type="button" class="btn btn-gray">Add later</button>
+  <button (click)="saveDelete()" type="button" class="btn btn-red">Delete</button>
 </div>
-{{rolePermissionDeleteViewModel|json}}
+ 
