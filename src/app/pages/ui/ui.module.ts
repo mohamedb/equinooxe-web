@@ -8,7 +8,7 @@ import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { Ui } from './ui.component';
 import { Buttons } from './components/buttons/buttons.component';
 import { Grid } from './components/grid/grid.component';
-import { Icons } from './components/icons/icons.component';
+// import { Icons } from './components/icons/icons.component';
 import { Typography } from './components/typography/typography.component';
 
 import { FlatButtons } from './components/buttons/components/flatButtons';
@@ -19,7 +19,7 @@ import { IconButtons } from './components/buttons/components/iconButtons';
 import { LargeButtons } from './components/buttons/components/largeButtons';
 import { DropdownButtons } from './components/buttons/components/dropdownButtons';
 import { GroupButtons } from './components/buttons/components/groupButtons';
-import { IconsService } from './components/icons/icons.service';
+// import { IconsService } from './components/icons/icons.service';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { IconsService } from './components/icons/icons.service';
   declarations: [
     Buttons,
     Grid,
-    Icons,
+    // Icons,
     Typography,
     Ui,
     FlatButtons,
@@ -46,7 +46,7 @@ import { IconsService } from './components/icons/icons.service';
     GroupButtons
   ],
   providers: [
-    IconsService
+    // IconsService
   ]
 })
 export default class UiModule {

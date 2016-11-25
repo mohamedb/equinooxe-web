@@ -19,30 +19,15 @@ export class BaSidebar {
   public isMenuCollapsed: boolean = false;
   public isMenuShouldCollapsed: boolean = false;
 
-  toHaveClass = document.getElementsByTagName('main')[0];
-
   constructor(private _elementRef: ElementRef, private _state: GlobalState) {
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
 
-
-    document.onclick = (e) => {
-      if (e.target.className.indexOf('al-sidebar-list') > -1) {
-        // this.toHaveClass.classList.remove("menu-collapsed");
-        this.menuExpand();
-      }
-      else {
-        // this.toHaveClass.classList.add("menu-collapsed")
-        this.menuCollapse();
-      }
-    }
-
   }
 
   onMouseEnter() {
-    // this.toHaveClass.classList.remove("menu-collapsed")
      this.menuExpand();
   }
 
