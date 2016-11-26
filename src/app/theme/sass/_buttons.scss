@@ -45,7 +45,10 @@ $hover: 24;
 }
 
 .btn-blue {
-  color: #3367d6;
+  background-color: #4d90fe;
+  background: -webkit-linear-gradient(top, #4d90fe, #4787ed);
+  background: -o-linear-gradient(top,#4d90fe, #4787ed);
+  background: -moz-linear-gradient(top,#4d90fe, #4787ed);
+  background: linear-gradient(top,#4d90fe, #4787ed);
+  color: #fff;
 }
-
- 
